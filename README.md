@@ -5,10 +5,12 @@ Learn Sui blockchain development by building a decentralized journal application
 ## Workshop Overview
 
 **What You'll Build:**
+
 - Phase 1: Deploy and test a counter smart contract (practice deployment workflow)
 - Phase 2: Build a journal dApp with create, read, and global discovery features
 
 **What You'll Learn:**
+
 - Deploying Move smart contracts to Sui testnet
 - Working with shared and owned objects
 - Building transactions and calling Move functions
@@ -88,6 +90,7 @@ sui client publish --gas-budget 100000000
 **Important:** Save the `packageId` from the publish output - you'll need it in the next step.
 
 Example output:
+
 ```
 Created Object:
   PackageID: 0x123abc...
@@ -121,22 +124,22 @@ Open your browser to the local development URL (typically `http://localhost:5173
 **Testing Features:**
 
 1. **Connect Wallet** - Click "Connect Wallet" in the top right
-   - **No browser extension needed!** The app includes Slush web wallet - just sign in with Google
 
+   - **No browser extension needed!** The app includes Slush web wallet - just sign in with Google
 2. **Get Testnet SUI** - Once connected, click the "Get Testnet SUI" button
+
    - Opens the Sui faucet with your address pre-filled
    - Request testnet tokens for gas fees
-
 3. **Create Counter** - Click to create a new shared counter object
-
 4. **Increment Counter** - Test incrementing the counter value
-
 5. **Explore Code (Optional)** - Review [src/Counter.tsx](src/Counter.tsx) and [src/CreateCounter.tsx](src/CreateCounter.tsx) to see how:
+
    - Transactions are built with `@mysten/sui/transactions`
    - Move functions are called from the frontend
    - Shared objects are queried and updated
 
 **Key Concepts Learned:**
+
 - Deploying Move contracts to Sui testnet
 - Shared objects (accessible by anyone)
 - Building and executing transactions
@@ -165,6 +168,7 @@ sui move new journal
 ```
 
 This command creates a new directory structure:
+
 ```
 move/journal/
 ├── Move.toml          # Package manifest (dependencies, addresses)
@@ -181,6 +185,7 @@ Create a new file [move/journal/sources/journal.move](move/journal/sources/journ
 #### Structs
 
 **Journal** - An owned Sui object representing a journal
+
 - Abilities: key, store
 - Fields:
   - `id: UID`
@@ -188,7 +193,8 @@ Create a new file [move/journal/sources/journal.move](move/journal/sources/journ
   - `title: String`
   - `entries: vector<Entry>`
 
-**Entry** - A struct representing a journal entry, to be stored in the `Journal` object. 
+**Entry** - A struct representing a journal entry, to be stored in the `Journal` object.
+
 - Abilities: store
 - Fields:
   - `content: String`
@@ -197,11 +203,13 @@ Create a new file [move/journal/sources/journal.move](move/journal/sources/journ
 #### Functions
 
 **new_journal**
+
 - Parameters: `title: String`, `ctx: &mut TxContext`
 - Returns: `Journal`
 - Creates and returns a new Journal object with an empty entries vector
 
 **add_entry**
+
 - Parameters: `journal: &mut Journal`, `content: String`, `clock: &Clock`, `ctx: &TxContext`
 - Returns: nothing
 - Verifies the caller is the journal owner
@@ -209,6 +217,7 @@ Create a new file [move/journal/sources/journal.move](move/journal/sources/journ
 - Adds the entry to the journal's entries vector
 
 **Hints:**
+
 - You'll need to import `std::string::String` and `sui::clock::Clock`
 - Use `clock.timestamp_ms()` to get the current timestamp
 

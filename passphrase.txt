@@ -1,0 +1,2 @@
+Generated new keypair and alias for address with scheme "secp256k1" [admiring-idocrase: 0x0e2eaf3516b1bb87dc0e9ba9b1ee1b05d6e70ad95eaa40f4115ccf89688a742e]
+Secret Recovery Phrase : [sunset multiply basic there perfect bone announce rifle clerk alpha stove poverty]
